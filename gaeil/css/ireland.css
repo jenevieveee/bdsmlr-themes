@@ -1,0 +1,816 @@
+ /* Téama na Gaeil 0.1 for BDSMLR by Jennie 
+ *
+ * 
+ * This is an unofficial theme. Future updates to BDSMLR may break
+ * the theme. This theme is designed only the desktop view; mobile
+ * and sidebar views are not supported.
+ *
+ * Contact Jennie via DM at jennie.bdsmlr.com for questions. Be nice.
+ * Please read the Instructions before contacting me.
+ *
+ * ************* Instructions ********************************************
+ *
+ * You must set your theme to "default" to use this theme. 
+ *
+ * Copy this theme to a text editor, then make the necessary changes under
+ * "options", then paste the whole thing into the CSS editor on 
+ *
+ * * * * * * * *   Options	 * * * * * * * * * * * * * * * * * * * * * * *
+ * 
+ *		++++ Background ++++
+ *		--------------------
+ * Set the background for the body element to the background you want. 
+ *
+ *		++++ Avatar background ++++
+ *		---------------------------
+ * Change the .pub-blog-header background to the avatar background you want. 
+ * Choices are --avi-ire, --avi-sco, and avi-blue. Altough note that the 
+ * layout is distinctly Irish, not Gaelic or Celtic, so you may want to stick
+ * with the Irish flag (or blue if you're a true fan of irish history).
+ *
+ *		++++ Tags color ++++
+ *		--------------------
+ * Change the --tags-color to the color you want for your tags
+ * 
+ * ************ Known Bugs **************************************************
+ *
+ * There is a lot of size voodoo. You may need to adjust the spacing. This 
+ * was tested using 1280 and 1920 width monitors.
+ *
+ * The rendering of the drop shadow on the content renders funny when you 
+ * reach the last post. Again, not a major issue once you have content.
+ *
+ * On permalink pages, the nav bar uses words instead of icons. Except for
+ * unfollow, so this looks a bit iffy. You don't see this normally, as the
+ * logged-in view is slightly different than what other viewers see. Test
+ * while logged into a side blog.
+ *
+ */
+  
+ /* Set the CSS for desktop view -- min 840 width */
+@media only screen and (min-width:840px) {
+	/* general stuff */
+
+	/* Set the background for the avatar. Options are 
+		--avi-blue (blue background)
+		--avi-ire  (Irish Flag)
+		--avi-sco  (Scottish Flag)
+	*/
+	.pub-blog-header {
+		background: var(--avi-blue);
+	}	
+
+	/* Options CSS */
+	:root { 
+		/* Voodoo numbers -- these may need to be adjusted, depending on the length 
+		 * of your title/description. SAVE FREQUENTLY AND KEEP A WORKING BACKUP!! */
+		--desc-offset: 440px; /* The y-position of the blog description.*/
+		--content-offset-reset: -580px; /* Repositions the content into the 
+										   right pane on the permalink pages. */
+
+
+		/* For the asset images, you should create a single post on your blog (or a side blog),
+         * and put the URLs of the images into these variables. Existing assets to my blog 
+		   are left in as examples. Do not use these. */
+
+		/* For the Shamrock Quote */
+		/* --scroll-img:url(https://cdn012.bdsmlr.com/uploads/photos/2020/09/1104039/bdsmlr-1104039-LXj6kDAllt.png);*/
+		--scroll-img:url( CHANGE ME );
+
+		/* for the like heart */
+		/* --like-img: url(https://cdn012.bdsmlr.com/uploads/photos/2020/09/1104039/bdsmlr-1104039-tQwgpka8mh.png); */
+		--like-img: url( CHANGE ME );
+		/* --liked-img: url(https://cdn012.bdsmlr.com/uploads/photos/2020/09/1104039/bdsmlr-1104039-86npcagDgi.png); */
+		--liked-img: url( CHANGE ME );
+
+		/* --mybg-image: url(https://cdn012.bdsmlr.com/uploads/photos/2021/08/1104039/bdsmlr-1104039-4uOqASVlDV.jpg); */
+		--mybg-image: url( CHANGE ME );
+
+		/* Color of the tags. Set to any color you like. */
+		--tags-color: darkgreen;
+
+		/* ****************************************************** */
+		/* You shouldn't need to change anything below this point */
+		/* ****************************************************** */  
+
+		/* Standard Design; These tend to appear a lot,
+			and this can keep everything consistent */
+		--sjd-border-radius: 6px;
+		--sjd-box-shadow: 2px 2px 6px black;
+		--sjd-border: 1px solid black;
+		--sjd-fog: rgba(192,192,192,0.7);
+
+		--nca-outline-text-shadow: 0px 0px 1px firebrick, 
+								   0px 0px 20px black, 
+								   0px 0px 20px black;
+
+
+		--blog-header-size-square: 220px;
+		--blog-header-size-img: 150px;
+		--blog-container-width: 840px;
+		/* flag backgrounds */
+		/* Tri-color Flag of Ireland */
+		--avi-ire: linear-gradient(to right, green 33.33%, white 0, white 66.66%, orange 0);
+		/* Saltire/ St. Andrew's Cross for Scotland */
+		--avi-sco: linear-gradient(144deg, transparent 45%, transparent 45%, 
+													   white 45%, white 45%, white 55%, 
+													   transparent 55%, transparent 55%), 
+							   linear-gradient(37deg, lightBlue 45%,lightBlue 45%,
+													  #ffffff 45%,#ffffff 45%,#ffffff 55%,
+													  lightBlue 55%,lightBlue 55%);
+		/* Historic blue harp (but the harp would be obscrued so we don't worry about that). */
+		--avi-blue: navy;
+
+		--side-margin: 40px;
+		--side-width: calc( ( 100vw - var(--blog-container-width )) /2 - (2 * var(--side-margin) ));
+		--side-width-no-margin: calc( ( 100vw - var(--blog-container-width ) /2 ));
+
+	}
+
+	body {
+		background-image:var(--mybg-image);
+		background-attachment:fixed;
+	
+		background-size: cover;
+		background-repeat: repeat;
+		background-attachment: fixed;
+		background-position: center;
+	}
+
+
+/* Navigation Bar */
+	/* float the nav bar vertically on the left. make it pop out on hover */
+	/* Add zoom hover effect */
+	.topholder {
+		background-color: var( --sjd-fog );
+		align-items: center;
+		text-shadow: 0 0 1px red;
+		box-shadow: 4px 4px 6px black;
+	}
+	.topholder:hover {
+		transform-origin: top right;
+		transform:matrix(1.5,0,0,1.5, 0, 0);
+	}
+
+	/* Center the icons */
+	.frontpage {
+		float: none !important;
+	}
+	/* Holderopts is the background shading for the CSS escape characters.
+	 * I don't like the individual shading */
+	.holderopts {
+		background-color: transparent;
+	}
+
+	/* Set the home icon */
+	.far.fa-home::before {
+		color: Indigo; 
+		font-size:1em;
+		float:right;
+	}
+	/* Set the unfollow icon */
+	.far.fa-user-minus::before {
+	}
+
+	/* Set the follow icon */
+	.far.fa-user-plus::before {
+	}
+
+	/* Set the submit icon */
+	.fa-paper-plane::before { 
+		color:DarkGreen; 
+	}
+
+	/* Set the dating icon */
+	.dateheart::before { 
+		color:red;
+		cursor:grabbing;
+	}
+ 
+	/* The the ask/fanmail icon */
+	.fa-question::before {
+		color: Orchid;
+		cursor: help;
+	}
+
+	/* Set the archive icon */
+	.fa-history::before {
+		color: SandyBrown;
+		cursor:progress;
+	}
+
+	/* Set the chat icon */
+	.fas.fa-comment::before {
+		color: gold;
+		cursor:grab;
+	}
+
+	/* Set the block icon */
+	.fa-ban {
+		color:black;	
+	}
+
+	/* Set the gears/hamburger (report) icon */
+	.fa-bars {
+	}
+
+	/* Set the search icon */
+	.fa-search::before { 
+		color: cyan; 
+	}
+
+	/* Create header with background */
+	.pub-blog-header {
+		padding:10px;
+		width: var(--blog-header-size-square) !important;
+		height: var(--blog-header-size-square) !important;
+		border: var(--sjd-border);
+		box-shadow: var(--sjd-box-shadow);
+		border-radius: var(--sjd-border-radius);
+	}
+	
+	/* Set the icon. Make it a bit larger. */
+	.pub-blog-header img.blog_image {
+		float: center;
+		height: var(--blog-header-size-img);
+		width: var(--blog-header-size-img);
+		margin-right:8px;
+	}
+	/*Make the border look nicer */
+	.blog_image.square {
+		border: 4px ridge silver !important;
+	}
+
+	/* Set the main container. This is centered on the screen. I added a nice
+	 * gradient effect, that goes from a jewel-tone blue to a very light blue,
+	 * then darkens again on the next data fetch. */
+	.container { 
+		background: transparent;
+		width: var( --blog-container-width );
+	}
+
+	/* Content Container is normally everything except the header image, but 
+	 * here it it essentially the same as the container.*/
+	.contentcontainer {
+		width:var( --blog-container-width) !important;
+		overflow:hidden; /*Keep the scrollbars from rendering on ad resize*/
+	  }
+  
+	/* Blog title. We want this fixed on the left. Vertical position is a bit 
+	 * finicky, because we have to do a fixed-position from the pub-blog-header */
+	.pub-blog-title {
+		font-family: Georgia, serif;
+		text-shadow: var(--nca-outline-text-shadow);
+	}
+
+	/* Shrink the title just a bit. default is 4em */
+	.pub-blog-title h1 {
+		font-size: 3.5em;
+		color: white;
+		text-shadow: var(--nca-outline-text-shadow);
+	}
+
+	/* description. Again, this is a pit finicky,because we can't flow since there's no left-hand container. Play with margin-top to find a happy place.*/
+	
+	#desci h3 {
+		text-shadow: var(--nca-outline-text-shadow);
+		margin:5px !important;
+		color: white;
+	}
+
+	/* Likes/followers/etc.*/
+	/* Hide the outer container */
+	.selections {
+		background: transparent;
+		padding: 5px;
+		}
+	.selection {
+		background: #303030;
+		box-shadow: var(--sjd-box-shadow) !important;
+		border: var(--sjd-border);			
+		border-radius: var(--sjd-border-radius) !important;
+		/* don't crowd the borders, or each other */
+		padding-right:10px;
+		padding-left:10px;
+		padding-top: 4px;	
+		margin-left: 10px !important;
+		margin-right: 10px !important;
+	}
+	
+/* Main content -- where your posts go. */
+	/* Make a magnified image pop */
+	.mfp-img {
+		margin:10px !important;
+		box-shadow: 0 0 10px 8px silver;
+		padding: 0px 0px 0px 0px !important;
+	}
+	.mfp-close {
+		text-shadow: 2px 2px 4px black;
+		/*The x ends up in the border;this looks bad, so adjust */
+		padding-right:16px !important;
+	}
+ 
+	img.mfp-img {
+		/* make sure the border fits within the vh/vw */
+		max-height: calc(100vh - 20px) !important;
+		max-width: calc(100vw - 20px) !important;
+	}
+	
+
+	/* add some flair to the tags */
+	.tags { 
+		 font-style: italic; 
+	}
+	a.tag {
+		color: var(--tags-color) !important;
+	}
+	a.tag:hover { 
+		font-size:1.5em;
+		font-style: normal; 
+		font-weight: bold; 
+		color: black !important; 
+	}
+
+	/* Give a little margin on the images in the frame */
+	.sidepostimage {
+		text-align: center;
+		width: auto !important;
+		margin: auto;
+		margin-top: 10px;
+		display: block;
+		box-shadow: var(--sjd-box-shadow);
+		max-width: 95%;
+		border-radius:8px;
+	}
+
+	/* Put a border around each post, and a trailing shadow. This gives
+	 * a nice card effect. */
+	.postholder {
+		border: var(--sjd-border) !important;
+		box-shadow: var(--sjd-box-shadow) !important;
+		border-radius: var(--sjd-border-radius) !important;
+		padding-top:10px;
+	}
+	.post_info {
+		margin-top: 5px;
+		padding-top: 0px;
+	}
+	.pinfo {
+		margin-top: 0px;
+		padding-top: 0px !important;
+	}
+	/* indent the comments, 10px for each comment.*/
+	/* This is dependent on the .singlecomment being the third div in
+	   postholder */
+	.singlecomment {
+		margin-top: 6px; 
+		margin-left:30px;
+	}
+	.singlecomment:nth-of-type(3) {
+		margin-left: 0px;
+	}
+	.singlecomment:nth-of-typed(4) {
+		margin-left: 10px;
+	}
+	.singlecomment:nth-of-type(5) {
+		margin-left: 20px;
+	}
+
+	/* Theme1 will hold you actual posts. Not much is happening here, other 
+	 * than keeping it to the right in a fixed width and in the correct spot.
+	 */
+	.contentcontainer .theme1 {
+		float:right !important;
+		width: var(--blog-container-width) !important;
+		max-width: var(--blog-container-width) !important;
+		min-height: 100vh !important;
+		display: block !important;
+		margin-top: 20px !important;
+		height: auto !important;
+	}
+	
+	.theme1  .wrap-post {
+		width: 840px !important;
+	}
+	/* I cannot figure out how to get side-by-side followers... 
+	 * There's some static sizing going on in the html... */
+	/*
+	.theme1 a {
+		position: absolute !important;
+		top:auto !important;
+
+	} */
+
+	.blogwrapper {
+		margin:10px;
+		border: var(--sjd-border) !important;
+		box-shadow: var(--sjd-box-shadow) !important;
+		border-radius: var(--sjd-border-radius) !important;
+		background: var(--sjd-fog) !important;
+		
+	}
+	
+	/* The likes/top posts/etc do this weird thing where they place an empty
+	 * postholder to the left of the contentcontainer. This corrects for that
+	 * by making the wrap-post 0px if it's a child of contentcontainer
+	 */
+	.contentcontainer .wrap-post {
+		width:0px !important;
+		/*background:red !important! */
+		display: none;
+	}
+	/* Now, if wrap-post is a child of theme1, then we want the 840px */
+	.contentcontainer .theme1 .wrap-post {
+		width: var(--blog-container-width) !important;
+		display: inherit !important;
+	}
+
+	/* This is a workaround for a bug in the html in the permalink page. If 
+	 * the html template ever gets fixed, the page will render wrong, but 
+	 * then this can be deleted.
+	 *
+	 * The margin-top is a voodoo number, designed to undo the position shift
+	 * that comes from placing theme1 under the pub-blog-desc. */
+	.pub-blog-desc .theme1 {
+		/*margin-top:var(--content-reset-offset) !important;*/
+		float:left;
+		display:block;
+		width: var(--blog-container-width);
+		/* margin-left: var(--side-width-no-margin); */
+	}
+
+	.typeimage .image_container {
+		padding-top: 10px;
+	}
+
+	.pubvideo .vplayerholder {
+		background: linear-gradient( 135deg, darkgreen, darkgreen, forestgreen, lightgreen );
+		border-radius: var(--sjd-border-radius);
+		box-shadow: var(--sjd-box-shadow);
+		border: var(--sjd-border );
+		max-width: 95%;
+		margin:auto;
+		margin-top:10px;
+	}
+
+	/* celtic knot heart */
+	.likeheart:before {
+		content:var(--like-img);
+		padding:0px;
+
+	}
+	/* red celtic knot heart */
+	.likesheart:before {
+		content:var(--liked-img);
+		padding:0px;
+
+	}
+	.footer {
+		font-size: 2em !important;
+	}
+	#likecontainer {
+		font-size: 2em !important;
+	}
+
+	/* Fancy up the quote type ******************************************** */
+	.typequote .image_container {
+		background: linear-gradient( 135deg, darkgreen, darkgreen, forestgreen, lightgreen );
+		border-radius: var(--sjd-border-radius);
+		box-shadow: var(--sjd-box-shadow);
+		border: var(--sjd-border );
+		max-width: 95%;
+		margin:auto;
+		margin-top:10px;
+	}
+
+	.typequote .titletext {
+		/* Adjust the margins to put them between the 
+		 * scrollwork */
+		margin-left: 40px;
+		margin-right: 40px;
+		font-size:2.5em;
+		/* Cursive script. Tested on Windows and Kubuntu. 
+		 * Sucks to use Safari. */
+		font-family: Freestyle Script, Purisa, cursive;
+		text-shadow: 0px 0px 12px white, 0px 0px 12px white;
+	}
+	/* Add scrollwork */
+	.typequote .titletext::before {
+		content:var(--scroll-img);
+		display: block;
+		margin-left:-40px;
+
+	}
+	/* Make sure the trailing quote doesn't show up. */
+	.typequote .titletext::after {
+		display: none;
+	}
+	/* Eliminate the quotes */
+	.fa.fa-quote-left::before {
+		content:none;
+	}
+	.fa.fa-quote-right::before {
+		content:none;
+	}
+	/* Give a Source */
+	.typequote .textcontent {
+		text-shadow: 0px 0px 12px white, 0px 0px 12px white;
+		font-family: Impact, serif;
+		/* guesswork to adjust for the shamrock */
+		margin-left: 30px;
+	}
+	
+	/* end quote type ***************************************************** */
+
+	/* Make the links look better ***************************************** */
+	.typelink .image_container {
+		border-radius: var(--sjd-border-radius);
+		box-shadow: var(--sjd-box-shadow);
+		border: var( --sjd-border);
+		max-width: 95%;
+		margin:auto;
+		margin-top:10px;
+		padding-bottom:0px;
+	}
+	.typelink img {
+		border-radius:var(--sjd-border-radius);
+	}
+	.typelink .textcontent {
+		font-style: italic;
+	}
+	/* end link type ****************************************************** */
+	
+	/* Ask answer type **************************************************** */
+	/* asks are in .news, which is shared with the fluid player ads, so we 
+	 * have to be careful here. Luckily, there are only a few divs to worry
+	 * about
+	 */
+	.askname {
+		font-size:2em;
+		font-style: italic;
+	}
+	.askname .thumb img {
+		width:50px !important;
+		height: 50px !important;
+	}
+	.asktext {
+		border-radius: var(--sjd-border-radius);
+		box-shadow: var(--sjd-box-shadow);
+		width:75%;
+		padding-bottom: 10px;
+		font-style: oblique;
+		margin: auto;
+		margin-bottom: 10px;
+		text-align:center;
+
+	}
+	.answertext {
+		border-radius: var(--sjd-border-radius);
+		box-shadow: var(--sjd-border-radius);
+		padding-bottom: 10px;
+		padding-left: 10px;
+	}
+	/* The worst thing that should happen to the add is that it matches 
+	 * the card style of the rest of the blog. */
+	.news {
+		border-radius: var(--sjd-border-radius);
+		box-shadow: var(--sjd-box-shadow);
+	}
+	.news .post_content {
+		border-radius: var(--sjd-border-radius);
+		box-shadow: var(--sjd-box-shadow);
+	}
+	/* end ask type ******************************************************* */
+
+	/* Text type ********************************************************** */
+	.typetext .textcontent {
+		border-radius: var(--sjd-border-radius);
+		box-shadow: var(--sjd-box-shadow);
+		padding-bottom: 10px;
+		padding-left: 10px;
+		width: 95%;
+		background-color: seashell;
+		margin: auto;
+	}
+	/* End Text Type ****************************************************** */
+
+
+	/* close off the mobile detection */ 
+}
+
+/* For wide screen monitors, we will take advantage of the real estate 
+ * in either margin */
+@media only screen and (min-width: 1600px) {
+	/* better ad placement on wide screen  ********************************  *
+	 * I ASKED AND GOT PERMISSION BEFORE DOING THIS!!!!!					 *
+	 * DON"T BE A JACKASS AND MESS WITH THE SITE REVENUE !!!				 *
+	 * *I* WILL REPORT YOU IF I SEE YOU HIDING IT!!!						 *
+	 */
+	.aholder {
+		width: var(--side-width);
+		position:fixed;
+		top: 20px;
+		right: 20px;
+		min-width:350px;
+	}
+	/* ***** END AD HOLDER **********************************************  */
+
+/* Left margin matter for your bio, avatar, title, and likes navbar. */
+	/* Put blog info into the left margin */
+
+	.pub-blog-header {
+		padding:10px;
+		position: fixed;
+		left:calc( var(--side-width)/2 - var(--blog-header-size-square)/2);
+		top:40px;	
+		width: var(--blog-header-size-square) !important;
+		height: var(--blog-header-size-square);
+		padding:0px;
+		margin:0px;
+		border-radius: var(--sjd-border-radius);
+		box-shadow: var(--sjd-border-radius);
+		border: var(--sjd-border);
+
+	}
+	/* Blog title. We want this fixed on the left. Vertical position is a bit 
+	 * finicky, because we have to do a fixed-position from the pub-blog-header */
+	.pub-blog-title {
+		left: var(--side-margin);
+		width: var(--side-width);
+		display: block;
+		top: calc( var(--blog-header-size-square) + (2* var(--side-margin))) !important;
+		position:fixed;
+		padding-right:var(--side-margin);
+	}
+	.pub-blog-desc {
+		left: var(--side-margin);
+		width: var(--side-width);
+		display: contents;
+		position:fixed;
+		margin-top: var(--desc-offset) !important;
+		font-style: normal; 
+		font-weight: bold;
+		font-size: 1.2em;
+		color: black !important; 
+		padding-right:var(--side-margin);
+	}
+	#desci {
+		width: var(--side-width);
+		margin: 5px;
+		position:fixed;
+		display:block;
+		left: var(--side-margin);
+		margin-top: var(--desc-offset) !important;
+		font-style: normal; 
+		font-weight: bold;
+		font-size: 1.2em;
+		padding-right: var(--side-margin);
+	}
+	.selections {
+		left: var(--side-margin);
+		width:var(--side-width);
+		bottom:40px;
+		position:fixed;
+		background: transparent;
+		padding: 5px;
+		padding-right:var(--side-margin);
+	
+	}
+	.selection {
+		width:80% !important;
+		border: 2px solid black;
+		background: #c0c0c0;
+		margin: auto !important;
+		margin-bottom:5px !important;
+		margin-top:5px !important;
+		box-shadow: var(--sjd-box-shadow) !important;
+		border: var(--sjd-border);	
+		border-radius: var(--sjd-border-radius) !important;
+	}
+
+	@media only screen and (max-height: 799px) {
+		.selection {
+			display: none !important;
+			z-index:-9999;
+		}
+	}
+	
+	/* Pop out the dating info 
+	   TODO: Place this in a margin if widescreen */
+	.datedropdownwrapper {
+/*		position: relative;
+		left: 75px;
+		z-index:999;*/
+	}
+}
+@media only screen and (max-width:839px) 
+{
+	:root {
+
+	    --tags-color: darkgreen;
+		--sjdm-border-radius: 4px;
+		--sjdm-box-shadow: 1px 1px 3px black;
+		--sjdm-border: 1px solid black;
+		--sjdm-fog: rgba(192,192,192,0.7);
+	}
+
+	/* Set the home icon */
+	.far.fa-home::before {
+		color: Indigo; 
+		font-size:1em;
+	}
+	/* Set the unfollow icon */
+	.far.fa-user-minus::before {
+	}
+
+	/* Set the follow icon */
+	.far.fa-user-plus::before {
+	}
+
+	/* Set the submit icon */
+	.fa-paper-plane::before { 
+		color:DarkGreen; 
+	}
+
+	/* Set the dating icon */
+	.dateheart::before { 
+		color:red;
+		cursor:grabbing;
+	}
+ 
+	/* The the ask/fanmail icon */
+	.fa-question::before {
+		color: Orchid;
+		cursor: help;
+	}
+
+	/* Set the archive icon */
+	.fa-history::before {
+		color: SandyBrown;
+		cursor:progress;
+	}
+
+	/* Set the chat icon */
+	.fas.fa-comment::before {
+		color: gold;
+		cursor:grab;
+	}
+
+	/* Set the block icon */
+	.fa-ban {
+		color:black;	
+	}
+
+	/* Set the gears/hamburger (report) icon */
+	.fa-bars {
+	}
+
+	/* Set the search icon */
+	.fa-search::before { 
+		color: cyan; 
+	}
+	.container { 
+		background: transparent;
+	}
+	.tags {
+		font-style: italic;
+	}
+	.sidepostimage {
+		box-shadow: var( --sjdm-box-shadow );
+	}
+
+	.postholder {
+		box-shadow: var(--sjdm-box-shadow) !important;
+		border-radius: var(--sjdm-border-radius) !important;
+		padding-top:10px;
+	}
+	.post_info {
+		margin-top: 5px;
+		padding-top: 0px;
+	}
+	.pinfo {
+		margin-top: 0px;
+		padding-top: 0px !important;
+	}
+	.sidepostimage {
+		text-align: center;
+		width: auto !important;
+		margin-top: 10px;
+		display: block;
+		box-shadow: var(--sjdm-box-shadow);
+		border: var(--sjdm-border);
+		border-radius:var(--sjdm-border-radius);
+	}
+	/* Text type ********************************************************** */
+	/* .typetext isn't present if on mobile, so we're a bit more limited in
+	 *  what we can do. */
+	 .textcontent {
+		border-radius: var(--sjdm-border-radius);
+		box-shadow: var(--sjdm-box-shadow);
+		padding-bottom: 10px;
+		padding-left: 10px;
+		width: 95%;
+		background-color: seashell;
+		margin: auto;
+	}
+	/* End Text Type ****************************************************** */}
