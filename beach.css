@@ -1,0 +1,297 @@
+ /* Beach theme 0.1 for BDSMLR by Jennie
+ *
+ * Simple, relaxing beach theme
+ * -Uses a secondary avatar, so the header image can be different 
+ *     from your inline avatar (and bigger, too!)
+ * - Left-side navigation bar with pop-out feature.   
+ * - Places title and description side-by-side for more compact 
+ *      view.
+ *
+ * This is an unofficial theme. Future updates to BDSMLR may break
+ * the theme. This theme is designed only the desktop view; mobile
+ * and sidebar views are not supported.
+ *
+ * Contact Jennie via DM at jennie.bdsmlr.com for questions. Be nice.
+ * Please read the Instructions before contacting me.
+ *
+ *
+ * ************* Instructions ********************************************
+ *
+ * You must set your theme to "default" to use this theme. 
+ *
+ * You will need to upload the background as the background on your blog.
+ *
+ * Copy this theme to a text editor, then make the necessary changes under
+ * "options", then paste the whole thing into the CSS editor on 
+ *
+ * * * * * * * * Options * * * * * * * * * * * * * * * * * * * * * * *
+ * 
+ *
+ *     +++++ Secondary Avatar +++++
+ *     ----------------------------
+ * You MUST post an image, and replace the URL in the
+ * --secondary-avatar with the image's URL (not the permalink).
+ *
+ *
+ */
+
+@media only screen and (min-width: 720px) {
+
+	:root { 
+		/* Update this with the URL of your secondary avatar */
+		--secondary-avatar:url(https://cdn012.bdsmlr.com/uploads/photos/2024/11/744469/bdsmlr-744469-0oISl6KD0j.jpg);
+
+		--mybg-image: url(https://cdn012.bdsmlr.com/uploads/photos/2024/11/744469/bdsmlr-744469-5Ubk4ZAtAm.jpg);
+	/* ****************************************************** */
+	/* You shouldn't need to change anything below this point */
+	/* ****************************************************** */  
+		--navbarwidth: 55px;
+		
+	}
+    body {
+		background-size: cover;
+		background-repeat: repeat;
+		background-attachment: fixed;
+		background-position: center;
+		background-image: var(--mybg-image);
+	}
+
+	/* Don't be an ass and hide the ads, but make them match
+	 * more seamlessly */
+	.sliderholder {
+		border: 1px solid black !important;
+		box-shadow: 2px 2px 4px black !important;
+		border-radius: 6px !important;
+	}
+	/* To use a secondary avatar, we cheat by making it the background 
+	 * image for the header, but then hide the header. Next, we resize
+	 * the a element, so we can still click back to the blog home page.
+	 */
+	.pub-blog-header {
+		background: var(--secondary-avatar);
+		background-size: contain;
+		height: 300px !important;
+		width: 300px !important;
+		background-repeat: no-repeat;
+		background-position: center; 
+		margin-bottom: 10px;
+                margin-left:10px;
+		padding:5px !important;
+                position:fixed;
+                z-index: -999 !important;
+                box-shadow: none;
+    }
+	
+	.pub-blog-header img.blog_image {
+		visibility: hidden;
+	}
+	.pub-blog-header .image_container {
+		width:100%;
+		height:100% !important;
+		display:block;
+	}
+	.pub-blog-header .image_container a {
+		width:300px !important;
+		height: 300px !important;
+		display:block;
+	}
+	.pub-blog-header img.square {
+		border-radius: 0px;
+		border: 0px;
+	}
+	/* Set the title to the left at 60%, and make the text stand
+	 * out against the background */
+	.pub-blog-title {
+		width:60%;
+		float:left;
+		margin: 5px;
+		text-shadow: 2px 2px 8px #404040;	
+		font-family:Georgia, serif;
+		font-weight:bold;
+	}
+
+	/* Set the description to the right at 40%, and do the same 
+	 * to the text. */
+	.pub-blog-description {
+		width: 40%;
+		float: right;
+		margin: 5px;
+		text-shadow: 2px 2px 8px #404040;	
+		font-family:Georgia, serif;
+		font-weight:bold;
+	}
+	#desci {
+		font-family:Georgia, serif;
+		font-weight:bold;
+		font-size: 1.2em;
+	}
+	#desci h3 {
+		text-shadow: 2px 2px 8px #000000 !important;
+		margin:5px !important;
+		color: white;
+	}
+
+	/* left-side pop-out nav bar */
+	.topholder{
+		text-align: left !important;
+		margin-top:5px;
+		margin-bottom:10px;
+		padding-bottom:5px;
+		padding-top:5px;
+		width:var(--navbarwidth);
+		display:grid;
+		position: absolute fixed;
+		left: calc( 10px - var(--navbarwidth) );
+		transition: 0.5s;
+		background-color: rgba(0, 0, 0, 0.3) !important;
+	}
+	.topholder:hover {
+		transform-origin: top left;
+		transform:matrix(1.2,0,0,1.2, 45, 0);
+	}
+	.topholder .a {
+		max-height:55px;
+	}
+	.submission {
+		padding-top:0px !important;
+		padding-bottom:0px !important;
+	}
+
+	.frontpage {
+		float:center;
+	}
+	.far.fa-home {
+		margin-bottom:10px !important;
+	}
+	.holderopts {
+		width:55px;
+		background-color: rgba(0, 0, 0, 0.0);
+		padding-right:0px !important;
+		padding-left:0px !important;
+	}
+	/* Lets make the ask and dating red on hover; */
+	.far.fa-question {
+		/* font-size:2em; */
+		max-width:50;
+		max-height:55;
+		transition: 0.2s;
+	}
+	.far.fa-question:hover {
+		color: red;
+	}
+	.dateheart{
+		transition: 0.2s;
+	}
+	.dateheart:hover {
+		color:red;
+	}
+
+	.far.fa-home::before {
+		color: Indigo; 
+		font-size:1em;
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+		margin-bottom:0px !important;
+	}
+
+	.far.fa-user-minus::before {
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+	}
+
+	.far.fa-user-plus::before {
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+	}
+
+	.fa-paper-plane::before { 
+		color:DarkGreen; 
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		max-height:50px;
+		display:block;
+	}
+
+	.dateheart::before { 
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+		cursor:grabbing;
+	}
+	.datedropdownwrapper {
+		position: relative;
+		left: 75px;
+	}
+ 
+	.fa-question::before {
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+		color: Orchid;
+		cursor: help;
+	}
+
+	.fa-history::before {
+		color: SandyBrown;
+		cursor:progress;
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+	}
+	.fas.fa-comment::before {
+		color: gold;
+		cursor:grab;
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+	}
+	.fa-ban {
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+	}
+	.fa-bars {
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+	}
+	.fa-search::before { 
+		color: cyan; 
+		width: var(--navbarwidth);
+		height: var(--navbarwidth);
+		display:block;
+	}
+
+	/* Create a card effect for the individual posts */
+	.postholder {
+		border: 1px solid black !important;
+		box-shadow: 2px 2px 4px black !important;
+		border-radius: 6px !important;
+		color: SandyBrown;
+	}
+	.sidepostimage {
+		width:calc(100% - 8px) !important;
+		text-align: center;
+		margin:2px;
+		margin-top:4px !important;
+	}
+	.magnify {
+		padding: 2px;
+	}
+	/* Make a magnified image pop */
+	.mfp-img {
+		margin:10px !important;
+		box-shadow: 0 0 10px 8px silver;
+		padding: 0px 0px 0px 0px !important;
+		max-height: calc(100vh - 30px); !important;
+		max-width: calc(100vw - 30px); !important;
+
+	}
+	.mfp-close {
+		text-shadow: 2px 2px black;
+	}
+
+}
